@@ -45,7 +45,7 @@ export class HomePage {
     }
 
     incrementScore() {
-        this.http.get('https://en.wikipedia.org/api/rest_v1/page/random/summary').subscribe((response) => {
+        this.http.get('https://en.wikipedia.org/api/rest_v1/page/random/summary').subscribe((response: any) => {
             this.title = response.title;
             this.extract = response.extract;
             this.imageSource = response.thumbnail.source;
