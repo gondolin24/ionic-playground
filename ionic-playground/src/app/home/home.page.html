@@ -1,13 +1,16 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      initial starter boiler plate
-    </ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>
+            Score {{getCounter()}}
+        </ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
- Can you run this?!??!
 
+
+
+    <ion-button color="warning" (click)="incrementScore()">Primary</ion-button>
+    <ion-badge color="primary">11</ion-badge>
 
 </ion-content>
