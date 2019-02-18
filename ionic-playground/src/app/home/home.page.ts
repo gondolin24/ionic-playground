@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Storage} from '@ionic/storage';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
     selector: 'app-home',
@@ -8,25 +8,48 @@ import {Storage} from '@ionic/storage';
 })
 export class HomePage {
 
-    constructor(private storage: Storage) {
-        this.storage.get('counter').then((val) => {
-            if (val) {
-                this.count = val;
-            }
-
-        });
+    constructor(private http: HttpClient) {
+        this.incrementScore();
     }
 
-    private count = 0;
+    private title = '';
 
-    getCounter(): string {
-        return '' + this.count;
+    private extract = '';
+    private imageSource = '';
+    isToggled = true;
+
+    getTitle(): string {
+        return 'Wiki Dosage';
+    }
+
+    getArticleTitle() {
+        return this.title;
+    }
+
+    toggleChange() {
+        if (!this.isToggled) {
+            this.isToggled = true;
+        }
+
+        if (this.isToggled) {
+            this.isToggled = false;
+        }
+    }
+
+    getStory() {
+        return this.extract;
+    }
+
+    getImage() {
+        return this.imageSource;
     }
 
     incrementScore() {
-        this.count++;
-        this.storage.set('counter', this.count);
+        this.http.get('https://en.wikipedia.org/api/rest_v1/page/random/summary').subscribe((response) => {
+            this.title = response.title;
+            this.extract = response.extract;
+            this.imageSource = response.thumbnail.source;
+        });
     }
-
 
 }

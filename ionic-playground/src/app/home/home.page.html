@@ -1,16 +1,36 @@
 <ion-header>
     <ion-toolbar>
         <ion-title>
-            Score {{getCounter()}}
+            {{getTitle()}}
         </ion-title>
     </ion-toolbar>
+
 </ion-header>
 
 <ion-content padding>
 
+    <ion-item>
+        <h1>
+            {{getArticleTitle()}}
+        </h1>
+    </ion-item>
+
+        <div class="center">
+            <ion-item>
+                <ion-img src={{getImage()}}></ion-img>
+            </ion-item>
+        </div>
 
 
-    <ion-button color="warning" (click)="incrementScore()">Primary</ion-button>
-    <ion-badge color="primary">11</ion-badge>
+
+    <ion-item>
+        <p>{{getStory()}}</p>
+    </ion-item>
+
 
 </ion-content>
+<ion-footer>
+    <ion-toolbar>
+        <ion-button expand="full" fill="outline" color="dark" (click)="incrementScore()">NEW Story</ion-button>
+    </ion-toolbar>
+</ion-footer>
